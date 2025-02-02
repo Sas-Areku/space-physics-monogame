@@ -46,7 +46,7 @@ public class SubMenu : CustomGameComponent
     entireOffsetOverride += offsetOverride;
     offset = new Vector2(menuOffsetXRight, 0f);
     baseOffset = offset;
-    controlItemDistance = 1750f;
+    controlItemDistance = 2000f;
 
     components.Add(new HudText(
       "Fonts/title-font",
@@ -114,7 +114,7 @@ public class SubMenu : CustomGameComponent
       if (opacity > 0)
         opacity = ColorHelper.FadeOpacity(opacity, 1f, 0f, opacityTransitionSpeed);
 
-      if (opacity <= 0.1f)
+      if (opacity <= 0.1f && (state == State.MainMenu || state == State.Pause))
         activeMenu = 1;
     }
     else

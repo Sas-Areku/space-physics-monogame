@@ -8,6 +8,7 @@ namespace SpacePhysics.Menu.SubMenus;
 
 public class SoundMenu : SubMenu
 {
+  private bool updatable;
 
   public SoundMenu() : base(
     "Sound",
@@ -17,12 +18,25 @@ public class SoundMenu : SubMenu
   )
   { }
 
+  public override void Update()
+  {
+    updatable = state == State.Sound;
+
+    base.Update();
+  }
+
   public override void AddMenuItems()
   {
-    menuItems.Add(new ControlItem(
+    menuItems.Add(new MenuIncrementerItem(
       "Master",
-      () => "100%",
+      () => SettingsState.masterVolume,
+      value => SettingsState.masterVolume = (int)value,
+      5f,
+      0f,
+      100f,
+      "%",
       () => activeMenu == 1,
+      () => updatable,
       alignment,
       () => new Vector2(0f, 0f) + menuOffsetOverride + entireOffsetOverride,
       controlItemDistance,
@@ -30,10 +44,16 @@ public class SoundMenu : SubMenu
       11
     ));
 
-    menuItems.Add(new ControlItem(
+    menuItems.Add(new MenuIncrementerItem(
       "Music",
-      () => "100%",
+      () => SettingsState.musicVolume,
+      value => SettingsState.musicVolume = (int)value,
+      5f,
+      0f,
+      100f,
+      "%",
       () => activeMenu == 2,
+      () => updatable,
       alignment,
       () => new Vector2(0f, menuSizeY) + menuOffsetOverride + entireOffsetOverride,
       controlItemDistance,
@@ -41,10 +61,16 @@ public class SoundMenu : SubMenu
       11
     ));
 
-    menuItems.Add(new ControlItem(
+    menuItems.Add(new MenuIncrementerItem(
       "Sound effects",
-      () => "100%",
+      () => SettingsState.soundEffectsVolume,
+      value => SettingsState.soundEffectsVolume = (int)value,
+      5f,
+      0f,
+      100f,
+      "%",
       () => activeMenu == 3,
+      () => updatable,
       alignment,
       () => new Vector2(0f, menuSizeY * 2f) + menuOffsetOverride + entireOffsetOverride,
       controlItemDistance,
@@ -52,10 +78,16 @@ public class SoundMenu : SubMenu
       11
     ));
 
-    menuItems.Add(new ControlItem(
+    menuItems.Add(new MenuIncrementerItem(
       "Menu sound effects",
-      () => "100%",
+      () => SettingsState.menuSoundEffectsVolume,
+      value => SettingsState.menuSoundEffectsVolume = (int)value,
+      5f,
+      0f,
+      100f,
+      "%",
       () => activeMenu == 4,
+      () => updatable,
       alignment,
       () => new Vector2(0f, menuSizeY * 3f) + menuOffsetOverride + entireOffsetOverride,
       controlItemDistance,

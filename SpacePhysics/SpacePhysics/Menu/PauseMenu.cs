@@ -93,7 +93,7 @@ public class PauseMenu : CustomGameComponent
       if (opacity > 0)
         opacity = ColorHelper.FadeOpacity(opacity, 1f, 0f, 0.2f);
 
-      if (opacity <= 0.1f)
+      if (opacity <= 0.1f && state == State.Play)
         activeMenu = 1;
     }
     else

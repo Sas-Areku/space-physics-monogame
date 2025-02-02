@@ -70,6 +70,8 @@ public class SettingsMenu : SubMenu
   {
     base.UpdateMenu();
 
+    if (state != State.Settings) return;
+
     if (activeMenu == 1 && input.MenuSelect() && isSettingsMenu)
       state = State.Sound;
 
